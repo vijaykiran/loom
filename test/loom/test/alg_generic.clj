@@ -165,7 +165,7 @@
                                 post (lag/post-edge-traverse g start)]
                             (= expected pre (seq (reverse post))))
        g1 :d nil
-       
+
        g4 :f '([:f :f]))
   ; covers the whole graph when it's totally connected from start
   (are [g start expected] (let [pre (lag/pre-edge-traverse g start)
@@ -177,13 +177,13 @@
                               (= (count edges) (count post))
                               (= (set edges) (set post))))
        g1 :a '([:a :b] [:b :d] [:a :c] [:c :d])
-       
+
        g4 :a '([:a :b] [:b :a] [:b :c] [:c :b] [:c :c] [:c :e] [:e :c]
                [:e :d] [:d :b] [:d :c] [:d :e] [:e :f] [:f :f] [:b :d])
-       
+
        g4 :c '([:c :b] [:b :a] [:a :b] [:b :c] [:b :d] [:d :b] [:d :c]
                [:d :e] [:e :c] [:e :d] [:e :f] [:f :f] [:c :c] [:c :e])
-       
+
        g5 :a '([:a :b] [:b :d] [:d :c] [:c :a]
                [:c :d] [:d :b] [:b :a] [:a :c]))
   ; post traversal returning seen nodes allows complete graph coverage
